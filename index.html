@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时空计算器</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  #container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #result {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.6;
+  }
+  #links {
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <label for="nauticalMiles">输入海里数：</label>
+  <input type="number" id="nauticalMiles" min="0">
+  <button onclick="calculate()">计算</button>
+  <div id="result"></div>
+</div>
+
+<div id="links">
+  <a href="#">特殊计算器</a>
+  <a href="https://time.org.cn/riqi/">日期计算功能</a>
+  <a href="https://time.org.cn/riqi/">日本的专门计算干支纪年的链接</a>
+  <a href="https://time.org.cn/riqi/">专门换算希伯来历的网址</a>
+</div>
+
+<script>
+function calculate() {
+  var nauticalMiles = parseFloat(document.getElementById('nauticalMiles').value);
+
+  var miles = nauticalMiles * 1.15078; // 海里换算为英里
+  var kilometers = nauticalMiles * 1.852; // 海里换算为公里
+  var feet = nauticalMiles * 6076.12; // 海里换算为英尺
+  var yards = nauticalMiles * 2025.37; // 海里换算为英码
+  var inches = nauticalMiles * 72913.4; // 海里换算为英寸
+  var radians = nauticalMiles / 60; // 海里换算为弧度
+  
+  var multiplyPi = radians * Math.PI; // 弧度乘以圆周率π
+  var multiply7Pi = radians * 7 * Math.PI; // 弧度乘以7乘以圆周率π
+  var multiply360Pi = radians * 360 * Math.PI; // 弧度乘以360乘以圆周率π
+  var multiply3607Pi = radians * 360 * 7 * Math.PI; // 弧度乘以360乘以7乘以圆周率π
+  var multiply360Divide7Pi = radians * 360 / 7 * Math.PI; // 弧度乘以360除以7乘以圆周率π
+  var divide2520Multiply7 = (2520 * 7) / radians; // 2520乘以7除以弧度的结果
+
+  
+  document.getElementById('result').innerHTML = result;
+  
+  var binary = nauticalMiles.toString(2); // 海里转换为二进制
+  var quaternary = nauticalMiles.toString(4); // 海里转换为四进制
+  var octal = nauticalMiles.toString(8); // 海里转换为八进制
+  var dozenal = nauticalMiles.toString(12); // 海里转换为十二进制
+  var hexadecimal = nauticalMiles.toString(16); // 海里转换为十六进制
+  var multiply7 = nauticalMiles * 7; // 海里乘以7
+
+  var multiply7Pi360Divide365 = (nauticalMiles * 7) * 360 / 365;      // 海里数×7×360÷365
+  var divide60 = nauticalMiles / 60; // 海里除以60
+  var multiply50Divide20 = (nauticalMiles * 50) / 20; // 海里乘以50除以20
+  var divide50Multiply20 = (nauticalMiles / 50) * 20; // 海里除以50乘以20
+  var multiply7Divide360 = (nauticalMiles * 7) / 360; // 海里乘以7除以360
+  var divide360Multiply7 = (nauticalMiles / 360) * 7; // 海里除以360乘以7
+  var multiplyPi = nauticalMiles * Math.PI; // 海里乘以圆周率π
+  var divide69 = nauticalMiles / 69; // 海里除以69
+  var subtract7916 = 7916.8134870462 - miles; // 7916.8134870462减去换算为英里结果的数值
+  var multiply11Divide7 = (nauticalMiles * 11) / 7; // 海里乘以11除以7
+  var divide11 = nauticalMiles / 11; // 海里除以11
+  var divide7 = nauticalMiles / 7; // 海里除以7
+  var subtract7916Multiply7 = (7916.8134870462 - miles) * 7; // 7916.8134870462减去换算后的英里数再乘以7
+
+  
+  
+  var month = parseInt(divide60).toString().padStart(2, '0');
+  var day = parseInt((divide60 - parseInt(divide60)) * 30).toString().padStart(2, '0');
+
+  var result = "<p style='font-size: 80px; font-weight: bold;'>海里换算结果：</p>";
+  result += "<p>海里数：" + nauticalMiles + "</p>";
+  result += "<p>英里数：" + miles + "</p>";
+  result += "<p>公里数：" + kilometers + "</p>";
+  result += "<p>英尺数：" + feet + "</p>";
+  result += "<p>英码数：" + yards + "</p>";
+  result += "<p>英寸数：" + inches + "</p>";
+  result += "<p>弧度：" + radians + "</p>";
+  result += "<p>弧度数：" + radians + "</p>";
+  result += "<p>弧度乘以π：" + multiplyPi.toFixed(15) + "</p>";
+  result += "<p>弧度乘以7乘以π：" + multiply7Pi.toFixed(15) + "</p>";
+  result += "<p>弧度乘以360乘以π：" + multiply360Pi.toFixed(15) + "</p>";
+  result += "<p>弧度乘以360乘以7乘以π：" + multiply3607Pi.toFixed(15) + "</p>";
+  result += "<p>弧度乘以360除以7乘以π：" + multiply360Divide7Pi.toFixed(15) + "</p>";
+  result += "<p>2520乘以7除以弧度的结果：" + divide2520Multiply7.toFixed(15) + "</p>";
+
+  result += "<p>二进制：" + binary + "</p>";
+  result += "<p>四进制：" + quaternary + "</p>";
+  result += "<p>八进制：" + octal + "</p>";
+  result += "<p>十二进制：" + dozenal + "</p>";
+  result += "<p>十六进制：" + hexadecimal + "</p>";
+  result += "<p>海里乘以7：" + multiply7 + "</p>";
+result += "<p>海里数×7×360÷365：" + multiply7Pi360Divide365.toFixed(15) + "</p>";
+
+  result += "<p>海里除以60等于日月：" + divide60 + "等于" + month + "月" + day + "日" + "</p>";
+  result += "<p>海里乘以50除以20：" + multiply50Divide20 + "</p>";
+  result += "<p>海里除以50乘以20：" + divide50Multiply20 + "</p>";
+  result += "<p>海里乘以7除以360：" + multiply7Divide360 + "</p>";
+  result += "<p>海里除以360乘以7：" + divide360Multiply7 + "</p>";
+  result += "<p>海里乘以π：" + multiplyPi.toFixed(15) + "</p>";
+  result += "<p>海里除以69：" + divide69 + "</p>";
+  result += "<p>7916.8134870462减去英里数：" + subtract7916 + "</p>";
+  result += "<p>海里乘以11除以7：" + multiply11Divide7 + "</p>";
+  result += "<p>海里除以11：" + divide11 + "</p>";
+  result += "<p>海里除以7：" + divide7 + "</p>";
+  result += "<p>7916.8134870462减去英里数再乘以7：" + subtract7916Multiply7 + "</p>";
+  result += "<p>2520÷7×π+所输入的海里数值，然后再乘7：" + (2520/7*Math.PI + nauticalMiles) * 7 + "</p>";
+  result += "<p>2520÷2+所输入的海里数值，然后再乘7：" + (2520/2 + nauticalMiles) * 7 + "</p>";
+
+  // 
+  document.getElementById('result').innerHTML = result;
+}
+</script>
+
+</body>
+</html>
