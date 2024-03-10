@@ -2,8 +2,7 @@ const proxyUrl = "https://goo.su/5JumiC"; // 替换为您的代理服务器地�
 
 const urls = [
     "https://goo.su/5JumiC",
-    "http://43.136.235.235:1234/",
-    "http://43.136.235.235",
+    
 ];
 
 function loadWebpage(url) {
