@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>播放器</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background: repeating-linear-gradient(to right, #0000FF, #0000FF 8.33%, #00FF00 8.33%, #00FF00 16.66%, #FF0000 16.66%, #FF0000 25%); /* 11条真正的蓝色、绿色和红色的纵向长条 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .audio-player {
-    background-color: #f1f1f1;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px; /* 调整播放器宽度 */
-  }
-
-  audio {
-    width: 100%;
-  }
-
-  /* 播放按钮样式 */
-  audio::-webkit-media-controls-play-button {
-    background-color: #fff; /* 播放按钮背景色 */
-    border-radius: 50%; /* 圆形按钮 */
-    height: 50px; /* 按钮高度 */
-    width: 50px; /* 按钮宽度 */
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Video Player</title>
+    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0; 
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: Blue;
+        }
+        video {
+            width: 100%;
+            max-width: 1080px;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
 
-<div class="audio-player">
-  <audio controls>
-    <source src="http://43.136.235.235/d/%E5%BC%9F%E5%85%84%E5%A7%8A%E5%A6%B9%E4%B8%8A%E4%BC%A0%E8%B5%84%E6%96%99%E4%B8%93%E7%94%A8%E7%9B%9810/%E6%96%B0/2023%EF%BC%8D4%EF%BC%8D12/%E8%A2%AB%E6%8F%90%E7%99%BC%E7%94%9F%E5%BE%8C%E6%95%B5%E5%9F%BA%E7%9D%A3%E8%82%86%E8%99%90%E7%9A%84%E5%A4%A7%E8%8B%A6%E9%9B%A3%E6%99%82%E6%9C%9F%20%E7%B2%B5%E8%AA%9E%E4%B8%AD%E8%8B%B1%E5%AD%97%E5%B9%95%20The%20reign%20of%20the%20Anti%20Christ%20after%20Rapture%20English%20%20Chinese%20Subtitles.mp4" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-</div>
+<video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    data-setup="{}">
+    <source src="http://43.136.235.235/d/%E5%BC%9F%E5%85%84%E5%A7%8A%E5%A6%B9%E4%B8%8A%E4%BC%A0%E8%B5%84%E6%96%99%E4%B8%93%E7%94%A8%E7%9B%9810/%E6%96%B0/2023%EF%BC%8D4%EF%BC%8D12/%E8%A2%AB%E6%8F%90%E7%99%BC%E7%94%9F%E5%BE%8C%E6%95%B5%E5%9F%BA%E7%9D%A3%E8%82%86%E8%99%90%E7%9A%84%E5%A4%A7%E8%8B%A6%E9%9B%A3%E6%99%82%E6%9C%9F%20%E7%B2%B5%E8%AA%9E%E4%B8%AD%E8%8B%B1%E5%AD%97%E5%B9%95%20The%20reign%20of%20the%20Anti%20Christ%20after%20Rapture%20English%20%20Chinese%20Subtitles.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<script src="https://unpkg.com/video.js/dist/video.js"></script>
+<script>
+  var player = videojs('my-video');
+</script>
 
 </body>
 </html>
+
 
 
 
