@@ -7,64 +7,75 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #3498db;
+            color: #ffffff;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 500px;
-            margin: 50px auto;
+            max-width: 400px;
             padding: 20px;
-            background-color: #fff;
+            background-color: #2c3e50;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
-            color: #333;
+            margin-bottom: 20px;
+            color: #ff6347; /* 正红色 */
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            text-align: left;
         }
 
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #555;
+            color: #ffffff;
         }
 
         input[type="number"], input[type="checkbox"] {
-            width: 100%;
+            width: calc(100% - 22px);
             padding: 10px;
-            border: 1px solid #ccc;
+            border: none;
             border-radius: 4px;
             font-size: 16px;
+            background-color: #34495e;
+            color: #ffffff;
+            box-sizing: border-box;
+            margin-top: 5px;
         }
 
         button {
-            display: block;
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
-            color: #fff;
+            background-color: #27ae60; /* 正绿色 */
+            color: #ffffff;
             border: none;
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #2ecc71; /* 正绿色 - 深色 */
         }
 
         #result {
             margin-top: 20px;
             font-size: 18px;
-            color: #333;
+            color: #f39c12; /* 正黄色 */
         }
     </style>
 </head>
@@ -84,8 +95,8 @@
             <input type="number" id="weeklyBet" value="11000">
         </div>
         <div class="form-group">
-            <label for="multiplyByFive">众志成城翻五倍：</label>
             <input type="checkbox" id="multiplyByFive">
+            <label for="multiplyByFive">众志成城翻五倍</label>
         </div>
         <button onclick="calculateCommission()">计算</button>
         <div id="result"></div>
