@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筛宝游戏</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="number"], input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result-box {
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            height: 300px;
+            overflow-y: auto;
+        }
+        #balance {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>筛宝游戏</h1>
+        <label for="initialBalance">初始余额：</label>
+        <span id="balance">$10,000</span>
+        <br>
+        <label for="betAmount">请输入投注金额：</label>
+        <input type="number" id="betAmount" placeholder="请输入投注金额">
+        <br>
+        <label for="tripleCount">请输入3倍投次数：</label>
+        <input type="number" id="tripleCount" placeholder="请输入3倍投次数">
+        <br>
+        <label for="planMode">请输入规划模式：</label>
+        <input type="text" id="planMode" placeholder="请输入数字代表的规划模式">
+        <p style="color: red;">说明：1代表单，2代表双，3代表小，4代表大</p>
+        <button onclick="playGame()">开始游戏</button>
+        <button onclick="autoPlan()">智能规划</button>
+        <button onclick="autoPlay()">全自动规划</button>
+        <div id="result-box"></div>
+    </div>
+
+    <script>
+        let balance = 10000;
+
+        function updateBalance() {
+            document.getElementById('balance').innerText = '$' + balance.toFixed(2);
+        }
+
+        function playGame() {
+            const betAmount = parseFloat(document.getElementById('betAmount').value);
+            const tripleCount = parseFloat(document.getElementById('tripleCount').value);
+            const planMode = document.getElementById('planMode').value;
+
+            // Validation
+            if (isNaN(betAmount) || isNaN(tripleCount) || planMode.trim() === '') {
+                alert('请输入有效的投注金额、3倍投次数和规划模式！');
+                return;
+            }
+
+            // Convert planMode to array of bet types
+            const betTypes = [];
+            const planModeStr = planMode.trim();
+            for (let i = 0; i < planModeStr.length; i++) {
+                const betType = parseInt(planModeStr.charAt(i));
+                if (betType >= 1 && betType <= 4) {
+                    betTypes.push(betType);
+                }
+            }
+
+            // Execute the game and display results
+            const resultBox = document.getElementById('result-box');
+            resultBox.innerHTML = '';
+
+            let currentBetAmount = betAmount; // 初始下注金额设为用户输入的金额
+
+            for (let i = 1; i <= tripleCount; i++) {
+                const result = getRandomResult();
+                const betType = betTypes[(i - 1) % betTypes.length];
+                const winAmount = calculateWinAmount(currentBetAmount, result, betType);
+                const winLoss = winAmount - currentBetAmount;
+
+                const resultMessage = `${result}：${winLoss >= 0 ? '中奖' : '未中奖'}`;
+                const resultParagraph = document.createElement('p');
+                resultParagraph.textContent = resultMessage;
+                resultBox.appendChild(resultParagraph);
+
+                // Update current balance
+                balance += winLoss;
+                updateBalance();
+
+                // 计算下一轮下注金额（3倍递增）
+                currentBetAmount *= 3;
+            }
+        }
+
+        function autoPlan() {
+            const tripleCount = parseInt(document.getElementById('tripleCount').value);
+            if (isNaN(tripleCount) || tripleCount <= 0) {
+                alert('请输入有效的3倍投次数！');
+                return;
+            }
+            // Intelligent plan generation algorithm
+            const smartPlan = generateSmartPlan(tripleCount);
+            document.getElementById('planMode').value = smartPlan;
+        }
+
+        function generateSmartPlan(tripleCount) {
+            // This is just a dummy smart plan generation algorithm
+            // In reality, it would be more sophisticated
+            const betTypes = ['1', '2', '3', '4']; // 1: 单, 2: 双, 3: 小, 4: 大
+            let smartPlan = '';
+            for (let i = 0; i < tripleCount; i++) {
+                const randomIndex = Math.floor(Math.random() * betTypes.length);
+                smartPlan += betTypes[randomIndex];
+            }
+            return smartPlan;
+        }
+
+        function autoPlay() {
+            const betAmount = parseFloat(document.getElementById('betAmount').value);
+            const tripleCount = parseInt(document.getElementById('tripleCount').value);
+            const smartPlan = generateSmartPlan(tripleCount);
+
+            document.getElementById('planMode').value = smartPlan;
+            playGame();
+        }
+
+        function getRandomResult() {
+            const outcomes = ['大', '小', '单', '双'];
+            const randomIndex = Math.floor(Math.random() * outcomes.length);
+            return outcomes[randomIndex];
+        }
+
+        function calculateWinAmount
+(betAmount, result, betType) {
+            // Dummy win/loss calculation function
+            // In a real game, this would be based on actual rules
+            if ((result === '大' && betType === 4) || (result === '小' && betType === 3) ||
+                (result === '单' && betType === 1) || (result === '双' && betType === 2)) {
+                return betAmount * 2;
+            }
+            return 0;
+        }
+
+        updateBalance(); // Initial display of balance
+    </script>
+</body>
+</html>
